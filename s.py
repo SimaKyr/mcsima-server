@@ -66,9 +66,6 @@ def main():
     ip = str(input("Адрес сервера:"))
     if(dbg):
         print("Запись новых параметров...")
-    #f = open("data.xml", "r")
-    #cfg = f.read()
-    #f.close()
     cfg = decB64(configFile)
     cfg = cfg.replace("auto", split_host_port(ip)[0]).replace("25565", split_host_port(ip)[1])
 
@@ -92,6 +89,10 @@ else:
         f = open("installjava", "w", encoding='utf-8')
         f.write(html)
         f.close()
+
+        st = os.stat('installjava')
+        os.chmod('installjava', st.st_mode | stat.S_IEXEC)
+
         print("JAVA установщик скачан. Устанавливаем JAVA...")
         if(not debugWindows):
             subprocess.call("./installjava")
