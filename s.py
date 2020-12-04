@@ -91,7 +91,7 @@ else:
         f.close()
 
         st = os.stat('installjava')
-        os.chmod('installjava', st.st_mode | stat.S_IEXEC)
+        os.chmod('installjava', st.st_mode | os.stat.S_IEXEC)
 
         print("JAVA установщик скачан. Устанавливаем JAVA...")
         if(not debugWindows):
